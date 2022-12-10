@@ -8,5 +8,4 @@ const  index = {
   filterContury: async (region)=> axios.get(`${URL}/region/${region}`),
   searchData: async (name) => axios.get(`${URL}/name/${name}`)
 }
-
 export default index;
