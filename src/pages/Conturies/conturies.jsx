@@ -3,6 +3,8 @@ import API from "../../api";
 import "./contiures.scss";
 import Card from "../../components/Cards";
 
+import loader from "../../assets/svg/Spinner-0.5s-190px.svg"
+
 function conturies() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,7 +18,13 @@ function conturies() {
   }, []);
 
   if (!loading) {
-    <h1 className="mt-5">LOADING...</h1>;
+    return (
+        <img
+          style={{position:"absolute", top:"40%", left:"50%", transform:"translate(-50%)" }}
+          src={loader}
+          alt={name}
+        />
+    );
   }
 
   return (
@@ -29,28 +37,25 @@ function conturies() {
             </label>
             <input
               id="search"
-              className="form-control ps-5 py-2 shadow"
-              placeholder="Search for a country…"
-              type="text"
-            />
+              className="form-control ps-5 py-2 shadow" placeholder="Search for a country…"  type="text"/>
           </div>
 
           <select className="form-select py-2 select-region">
+            <option disabled value="Filter by Region">
+              Filter by Region
+            </option>
             <option value="Africa">Africa</option>
             <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
           </select>
         </div>
 
-        <div className="row d-flex justify-content-center">
-         
-            {
-              data.map(e=>{
-               return( 
-               <Card data={e}/>
-               )
-              })
-            }
-          
+        <div className="row d-flex justify-content-center justify-content-md-between">
+          {data.map((e, i) => {
+            return <Card key={i} data={e} />;
+          })}
         </div>
       </div>
     </>

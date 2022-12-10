@@ -1,11 +1,10 @@
 import React from 'react';
 import "./style.scss"
+import Conturies from '../Conturies/conturies';
 
 function index() {
   return (
-    <div className='.container'>
-      
-    </div>
+    <Conturies/>
   );
 }
 

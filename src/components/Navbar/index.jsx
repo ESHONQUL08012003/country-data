@@ -1,23 +1,37 @@
+import { useState, useEffect } from "react";
 import "./navbar.scss";
 
-
-
-function index() {
+function Navbar() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark card-bg");
+    } else {
+      setTheme("light");
+    }
+  };
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.body.className = theme;
+    
+  }, [theme]);
 
   return (
-    <header className="py-4 position-fixed top-0 w-100 bg-light shadow">
+    <header className={`py-4 position-fixed top-0 w-100 shadow ${theme} `}>
       <div className="container">
         <div className="d-flex justify-content-between">
-          <span className="fw-bold text-dark fs-5">Where in the world?</span>
+          <span className="fw-bold fs-5">Where in the world?</span>
 
-          <select className="form-select select-them">
-            <option value="DarkMode">Dark Mode</option>
-            <option value="SunMode">Light Mode</option>
-          </select>
+          <div className="d-flex align-items-center ">
+            <select className="form-select select-them" onChange={toggleTheme} >
+              <option value="SunMode">Light Mode</option>
+              <option value="DarkMode">Dark Mode</option>
+            </select>
+          </div>
         </div>
       </div>
     </header>
   );
 }
 
-export default index;
+export default Navbar;

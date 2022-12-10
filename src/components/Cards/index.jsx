@@ -1,31 +1,18 @@
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./cars.scss"
 
 const index = (props) => {
-  const {data:  {name, flag, population, region, capital, numericCode }}= props;
-
-// for(let newObject of data){
-//   var data = data[newObject]
-// }
-
- 
-
-  // const [searchItem, setSearchItem] = useState("");
-  // const [searchResult, setSearchResult] = useState([]);
-
-  // const inputChang = (e) => {
-  //   setSearchItem(e.target.value);
-  // };
-
-  // useEffect(() => {
-  //   const result = props.filter((searchName) =>
-  //     searchName.toLowerCase().includes(searchItem)
-  //   );
-  //   setSearchResult(result);
-  // }, [searchItem]);
+  const {
+    data: { name, flag, population, region, capital },
+  } = props;
 
   return (
-    <div className="col-3 mb-3" key={numericCode} style={{ width: "280px" }}>
-      <div className="card">
+    <Link 
+      className="col-3 cards mb-3"
+      style={{ width: "280px" }}
+      to={`/country/${name}`}
+    >
+      <div className="card border">
         <img
           className="img-fluid rounded-0 rounded-top"
           style={{ height: "160px", width: "280px" }}
@@ -53,7 +40,7 @@ const index = (props) => {
           </ul>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
